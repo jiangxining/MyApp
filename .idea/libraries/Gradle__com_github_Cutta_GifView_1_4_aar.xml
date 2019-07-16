@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.Cutta:GifView:1.4@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8f01561f9eba78cefff044b6eac95fd3/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8f01561f9eba78cefff044b6eac95fd3/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.Cutta/GifView/1.4/4b63ab25c057980b195f1093fc0b16e7288d8914/GifView-1.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,61 @@
+package com.example.bigbig.officialPacege;
+
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+
+import com.example.bigbig.MainActivity;
+import com.example.bigbig.OfficiaILstActivity;
+import com.example.bigbig.R;
+import com.example.bigbig.SystemBlackActivity;
+import com.example.bigbig.officialPacege.api.OfficialApi;
+import com.example.bigbig.officialPacege.bean.DataListBean;
+
+import java.util.ArrayList;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class OfficialListFragment extends Fragment {
+    //https://wanandroid.com/wxarticle/list/408/1/json
+
+    public String url = "https://wanandroid.com/";
+
+    private static RecyclerView rl;
+    private ArrayList<DataListBean.DataBean.DatasBean> datasBeans;
+    private MyOfficialListAdapter myOfficialListAdapter;
+    private final String ss;
+
+    public OfficialListFragment(String s) {
+        Log.d(TAG, "OfficialListFragmentoooooooooooooooooooo: " + s);
+        // Required empty public constructor
+        ss = s;
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View inflate = inflater.inflate(R.layout.fragment_official_list, container, false);
+        MainActivity.idex=3;
+        initVie

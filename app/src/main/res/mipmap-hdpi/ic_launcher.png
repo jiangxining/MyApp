@@ -1,0 +1,84 @@
+package com.example.bigbig.Fragments;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
+import com.example.bigbig.MainActivity;
+import com.example.bigbig.R;
+import com.example.bigbig.base.BaseFragment;
+import com.example.bigbig.officialPacege.MyFragmentListAdapter;
+import com.example.bigbig.officialPacege.OfficialListFragment;
+import com.example.bigbig.officialPacege.bean.DataListBean;
+import com.example.bigbig.officialPacege.bean.TabBean;
+import com.example.bigbig.officialPacege.mvp.OfficialContract;
+import com.example.bigbig.officialPacege.mvp.OfficialPresenter;
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class WechatFragment extends BaseFragment implements OfficialContract.IOfficialView{
+
+    private TabLayout tab;
+    private ViewPager vp;
+    OfficialContract.IOfficialPresenter presenter;
+
+    private ArrayList<Fragment> fragments;
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View inflate = inflater.inflate(R.layout.fragment_official, container, false);
+
+        initView(inflate);
+        return inflate;
+    }
+
+
+    private void initView(View inflate) {
+        tab = inflate.findViewById(R.id.tab1);
+        vp = inflate.findViewById(R.id.vp);
+        fragments = new ArrayList<>();
+        setPresenter(new OfficialPresenter());
+        presenter.getTab();
+
+    }
+
+
+    private static final String TAG = "OfficialFragment";
+    @Override
+    public void getTabYes(TabBean tabLayout) {
+        Log.d(TAG, "getTabYes: "+tabLayout.getData().size());
+        List<TabBean.DataBean> data = tabLayout.getData();
+        for (int i = 0; i < data.size(); i++) {
+            tab.addTab(tab.newTab().setText(data.get(i).getName()));
+            fragments.add(new OfficialListFragment(data.get(i).getId()+""));
+        }
+
+        MyFragmentListAdapter myFragmentListAdapter = new MyFragmentListAdapter(getChildFragmentManager(), fragments);
+        vp.setAdapter(myFragmentListAdapter);
+        tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                vp.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        vp.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChang
